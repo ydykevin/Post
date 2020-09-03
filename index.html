@@ -78,7 +78,7 @@
                 $('#emailArr').html(finalText);
             }
         };
-        xhttp.open("GET", "https://velocityenglish.com.au/email_new_user/newcourse_userrecord.txt", true);
+        xhttp.open("GET", "http://cors.io/?https://velocityenglish.com.au/email_new_user/newcourse_userrecord.txt", true);
         xhttp.send();
 
         xhttp = new XMLHttpRequest();
@@ -89,7 +89,7 @@
                 $('#nowPrice').html(Math.max(1499-Math.floor(nowPeople/5)*50,999));
             }
         };
-        xhttp.open("GET", "https://velocityenglish.com.au/email_new_user/newcourse_users_count.txt", true);
+        xhttp.open("GET", "http://cors.io/?https://velocityenglish.com.au/email_new_user/newcourse_users_count.txt", true);
         xhttp.send();
 
         let nowDate = new Date();
