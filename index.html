@@ -23,8 +23,17 @@
             font-weight: bold;
         }
         .textLoop {
-            animation: 15s wordsLoop linear infinite normal;
             -webkit-animation: 15s wordsLoop linear infinite normal;
+            animation: 15s wordsLoop linear infinite normal;
+        }
+
+        @-webkit-keyframes wordsLoop {
+            0% {
+                -webkit-transform: translateY(0%);
+            }
+            100% {
+                -webkit-transform: translateY(-50%);
+            }
         }
 
         @keyframes wordsLoop {
@@ -38,16 +47,7 @@
             }
         }
 
-        @-webkit-keyframes wordsLoop {
-            0% {
-                transform: translateY(0%);
-                -webkit-transform: translateY(0%);
-            }
-            100% {
-                transform: translateY(-50%);
-                -webkit-transform: translateY(-50%);
-            }
-        }
+
     </style>
 
     <title>迅达课程报名</title>
