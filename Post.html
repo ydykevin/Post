@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        .text {
+            position: absolute;
+            font-family: "Adobe 黑体 Std R";
+            font-weight: bold;
+        }
+        .textLoop {
+            animation: 15s wordsLoop linear infinite normal;
+        }
+
+        @keyframes wordsLoop {
+            0% {
+                transform: translateY(0%);
+                -webkit-transform: translateY(0%);
+            }
+            100% {
+                transform: translateY(-50%);
+                -webkit-transform: translateY(-50%);
+            }
+        }
+    </style>
+
+    <title>迅达课程报名</title>
+</head>
+<body>
+<img id="img" src="img/bg.png" style="width:100%;position: absolute">
+<div id='time' class="text" style="left:9.9%;font-size: 5.7vw;">
+    <div id="remainDay" style="display: inline"></div>&nbsp;&nbsp;&nbsp;<div style="display: inline" id="remainHour"></div>
+</div>
+<div id='nowPrice' class="text" style="left:43.5%;font-size: 7vw;"></div>
+<div id='remainPeople' class="text" style="left:51.5%;font-size: 5.7vw;"></div>
+<div class="card" id='card' style="font-weight:bold;width:55%;position: absolute;left:10%;font-size: 4vw;font-family: 'Adobe 黑体 Std R'">
+    <center>
+        <div class="p-4">已报名用户</div>
+    </center>
+    <div class="dropdown-divider"></div>
+    <center>
+        <div class="p-4" id='emailDiv' style="overflow: hidden;font-size: 3vw">
+            <div id="emailArr" class="textLoop"></div>
+        </div>
+    </center>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        adjustHeight();
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.status === 200) {
+                let fakeEmail = 'dandan.y@gmail.com<br/>' +
+                                '3476529@qq.com<br/>' +
+                                '11946047@qq.com<br/>' +
+                                'kevin.yang@163.com<br/>' +
+                                'sam.liu123@yahoo.com<br/>' +
+                                'eric.zhao10086@gmail.com<br/>' +
+                                'maimai.d@gmail.com';
+                let finalText = this.responseText.replace('\n', '<br/>') + fakeEmail + '<br/>' +this.responseText.replace('\n', '<br/>') + fakeEmail;
+                $('#emailArr').html(finalText);
+            }
+        };
+        xhttp.open("GET", "https://velocityenglish.com.au/email_new_user/newcourse_userrecord.txt", true);
+        xhttp.send();
+
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.status === 200) {
+                let nowPeople = this.responseText;
+                $('#remainPeople').html((5-(parseInt(nowPeople)%5)));
+                $('#nowPrice').html(Math.max(1499-Math.floor(nowPeople/5)*50,999));
+            }
+        };
+        xhttp.open("GET", "https://velocityenglish.com.au/email_new_user/newcourse_users_count.txt", true);
+        xhttp.send();
+
+        let nowDate = new Date();
+        let endDate = new Date(2020,8,12);
+        // console.log(nowDate+'????'+endDate);
+        // console.log(endDate-nowDate);
+        let remainHour = Math.floor(((endDate - nowDate)%(1000*60*60*24))/(1000*60*60));
+        let remainDay = Math.floor((endDate - nowDate)/(1000*60*60*24));
+        console.log(remainDay+' '+remainHour);
+        if(remainHour<0){
+            remainHour=0;
+        }
+        if(remainDay<0){
+            remainDay=0;
+        }
+        $('#remainDay').text(remainDay);
+        $('#remainHour').text((remainHour<10?' ':'')+remainHour);
+
+    })
+
+    function adjustHeight() {
+        let imgHeight = $('#img').height();
+        let windowHeight = window.innerHeight;
+        let ratio = imgHeight/windowHeight;
+
+        $('#time').css({top:ratio*39+'%'});
+        $('#nowPrice').css({top:ratio*54.7+'%'});
+        $('#remainPeople').css({top:ratio*62+'%'});
+        $('#card').css({top:ratio*68+'%'});
+        $('#emailDiv').css({height:imgHeight*0.175+'px'});
+    }
+
+    $( window ).resize(function() {
+        adjustHeight();
+    });
+</script>
+</body>
+</html>
