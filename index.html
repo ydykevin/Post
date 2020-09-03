@@ -19,7 +19,7 @@
     <style>
         .text {
             position: absolute;
-            font-family: "Adobe 黑体 Std R";
+            font-family: "Arial";
             font-weight: bold;
         }
         .textLoop {
@@ -42,12 +42,12 @@
 </head>
 <body>
 <img id="img" src="img/bg.png" style="width:100%;position: absolute">
-<div id='time' class="text" style="left:9.9%;font-size: 5.7vw;">
-    <div id="remainDay" style="display: inline"></div>&nbsp;&nbsp;&nbsp;<div style="display: inline" id="remainHour"></div>
+<div id='time' class="text" style="left:9.5%;font-size: 5.7vw;">
+    <div id="remainDay" style="display: inline"></div>&nbsp;&nbsp;&nbsp;&nbsp;<div style="display: inline" id="remainHour"></div>
 </div>
 <div id='nowPrice' class="text" style="left:43.5%;font-size: 7vw;"></div>
 <div id='remainPeople' class="text" style="left:51.5%;font-size: 5.7vw;"></div>
-<div class="card" id='card' style="font-weight:bold;width:55%;position: absolute;left:10%;font-size: 4vw;font-family: 'Adobe 黑体 Std R'">
+<div class="card" id='card' style="font-weight:bold;width:55%;position: absolute;left:10%;font-size: 4vw;font-family: 'Arial'">
     <center>
         <div class="p-4">已报名用户</div>
     </center>
@@ -78,7 +78,7 @@
                 $('#emailArr').html(finalText);
             }
         };
-        xhttp.open("GET", "http://cors.io/?https://velocityenglish.com.au/email_new_user/newcourse_userrecord.txt", true);
+        xhttp.open("GET", "https://velocityenglish.com.au/email_new_user/newcourse_userrecord.txt", true);
         xhttp.send();
 
         xhttp = new XMLHttpRequest();
@@ -89,7 +89,7 @@
                 $('#nowPrice').html(Math.max(1499-Math.floor(nowPeople/5)*50,999));
             }
         };
-        xhttp.open("GET", "http://cors.io/?https://velocityenglish.com.au/email_new_user/newcourse_users_count.txt", true);
+        xhttp.open("GET", "https://velocityenglish.com.au/email_new_user/newcourse_users_count.txt", true);
         xhttp.send();
 
         let nowDate = new Date();
