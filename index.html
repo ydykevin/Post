@@ -24,6 +24,7 @@
         }
         .textLoop {
             animation: 15s wordsLoop linear infinite normal;
+            -webkit-animation: 15s wordsLoop linear infinite normal;
         }
 
         @keyframes wordsLoop {
@@ -54,7 +55,7 @@
     <div class="dropdown-divider"></div>
     <center>
         <div class="p-4" id='emailDiv' style="overflow: hidden;font-size: 3vw">
-            <div id="emailArr"></div>
+            <div id="emailArr" class="textLoop"></div>
         </div>
     </center>
 </div>
@@ -82,8 +83,6 @@
                     'maimai.d@gmail.com';
                 let finalText = this.responseText.replace('\n', '<br/>') + fakeEmail + '<br/>' +this.responseText.replace('\n', '<br/>') + fakeEmail;
                 $('#emailArr').html(finalText);
-                $('#emailArr').addClass('textLoop');
-
             }
         };
         xhttp.open("GET", "https://cors-anywhere.herokuapp.com/https://velocityenglish.com.au/email_new_user/newcourse_userrecord.txt", true);
