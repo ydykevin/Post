@@ -60,20 +60,26 @@
 </div>
 
 <script>
-    $(function () {
+    $(document).ready(function () {
+        update();
+        setInterval(()=>{
+            update();
+        },3000);
+    })
 
+    function update(){
         adjustHeight();
 
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.status === 200) {
                 let fakeEmail = 'dandan.y@gmail.com<br/>' +
-                                '3476529@qq.com<br/>' +
-                                '11946047@qq.com<br/>' +
-                                'kevin.yang@163.com<br/>' +
-                                'sam.liu123@yahoo.com<br/>' +
-                                'eric.zhao10086@gmail.com<br/>' +
-                                'maimai.d@gmail.com';
+                    '3476529@qq.com<br/>' +
+                    '11946047@qq.com<br/>' +
+                    'kevin.yang@163.com<br/>' +
+                    'sam.liu123@yahoo.com<br/>' +
+                    'eric.zhao10086@gmail.com<br/>' +
+                    'maimai.d@gmail.com';
                 let finalText = this.responseText.replace('\n', '<br/>') + fakeEmail + '<br/>' +this.responseText.replace('\n', '<br/>') + fakeEmail;
                 $('#emailArr').html(finalText);
             }
@@ -107,8 +113,7 @@
         }
         $('#remainDay').text(remainDay);
         $('#remainHour').text((remainHour<10?' ':'')+remainHour);
-
-    })
+    }
 
     function adjustHeight() {
         let imgHeight = $('#img').height();
