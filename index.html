@@ -25,14 +25,17 @@
         .textLoop {
             -webkit-animation: 15s wordsLoop linear infinite normal;
             animation: 15s wordsLoop linear infinite normal;
+            -moz-animation: 15s wordsLoop linear infinite normal;;
         }
 
         @-webkit-keyframes wordsLoop {
             0% {
                 -webkit-transform: translateY(0%);
+                transform: translateY(0%);
             }
             100% {
                 -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
             }
         }
 
@@ -44,6 +47,17 @@
             100% {
                 transform: translateY(-50%);
                 -webkit-transform: translateY(-50%);
+            }
+        }
+
+        @-moz-keyframes wordsLoop {
+            0% {
+                -moz-transform: translateY(0%);
+                transform: translateY(0%);
+            }
+            100% {
+                -moz-transform: translateY(-50%);
+                transform: translateY(-50%);
             }
         }
 
