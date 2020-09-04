@@ -73,7 +73,7 @@
 </div>
 <div id='nowPrice' class="text" style="left:43.5%;font-size: 7vw;"></div>
 <div id='remainPeople' class="text" style="left:51.5%;font-size: 5.7vw;"></div>
-<div class="card" id='card' style="font-weight:bold;top:2000px;width:55%;position: absolute;left:10%;font-size: 4vw;font-family: 'Arial'">
+<div class="card" id='card' style="display:none;font-weight:bold;width:55%;position: absolute;left:10%;font-size: 4vw;font-family: 'Arial'">
     <center>
         <div class="p-4">已报名用户</div>
     </center>
@@ -155,7 +155,7 @@
         $('#time').css({top:ratio*39+'%'});
         $('#nowPrice').css({top:ratio*54.7+'%'});
         $('#remainPeople').css({top:ratio*62+'%'});
-        $('#card').css({top:ratio*68+'%'});
+        $('#card').css({display:'flex',top:ratio*68+'%'});
         $('#emailDiv').css({height:imgHeight*0.175+'px'});
     }
 
