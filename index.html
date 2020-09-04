@@ -90,6 +90,7 @@
         update();
         setInterval(()=>{
             update();
+            $('#card').css({display:'flex'});
         },3000);
     })
 
@@ -155,7 +156,7 @@
         $('#time').css({top:ratio*39+'%'});
         $('#nowPrice').css({top:ratio*54.7+'%'});
         $('#remainPeople').css({top:ratio*62+'%'});
-        $('#card').css({display:'flex',top:ratio*68+'%'});
+        $('#card').css({top:ratio*68+'%'});
         $('#emailDiv').css({height:imgHeight*0.175+'px'});
     }
 
