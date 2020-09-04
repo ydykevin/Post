@@ -136,12 +136,13 @@
                     'maimai.d@gmail.com';
                 let finalText = this.responseText.replace('\n', '<br/>') + fakeEmail + '<br/>' +this.responseText.replace('\n', '<br/>') + fakeEmail;
                 $('#emailArr').html(finalText);
+                $('#emailArr').css('animation-play-state','running');
             }
         };
         xhttp.open("GET", "https://d-proxy.zme.ink/https://velocityenglish.com.au/email_new_user/newcourse_userrecord.txt", true);
         xhttp.setRequestHeader('Access-Control-Allow-Headers', '*');
         xhttp.send();
-        
+
     }
 
     function adjustHeight() {
